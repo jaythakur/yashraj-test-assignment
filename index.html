@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Registration form</title>
+    <link href="css/form.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="js/form.js"></script>
+   
+  </head>
+  <body>
+    <div class="outer">
+      <div class="inner">
+        
+        <form name="reg" id="reg" method="POST">
+        <h1>Registration</h1>
+          <div class="form-field">
+            <label for="fullName">Full Name</label>
+            <div class="input">
+              <input
+                type="text"
+                name="fullName"
+                id="fullName"
+                placeholder="Please enter your first name"
+                value=""
+                onchange="handleChange()"
+                onkeyup="handleChange()"
+              />
+              <div id="fullNameError" class="error">
+              </div>
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="email">Email</label>
+            <div class="input">
+              <input
+                type="text"
+                name="email"
+                id="email"
+                value=""
+                onchange="CheckEmail()"
+                onkeyup="CheckEmail()"
+                placeholder="Please enter your email"
+              />
+              <div id="emailError" class="error">
+              </div>
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="phone">Phone Number</label>
+            <div class="input">
+                <img src="images/jio.png" alt="jio" id="jio" class="hide" />
+                <img src="images/idea.png" alt="idea" id="idea" class="hide"/>
+                <img src="images/vodaphone.png" alt="vodaphone" id="vodaphone" class="hide" />
+              <span id="state"></span>
+                <input
+                type="text"
+                name="phone"
+                id="phone"
+                value=""
+                placeholder="(123)-456-7890"
+                onkeyup="validatePhone()"
+                onkeypress="validate_int()"
+              />
+              <div id="phoneError" class="error">
+            </div>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <button type="reset" class="reset">Reset</button>
+            <button type="button" class="submit"  onclick="handleSubmit()">Submit</button>
+          </div>
+        </form>
+        <div class="hide" id="validateOTP">
+            <div id="message"></div>
+            <form name="otpFrm" id="otpFrm" method="POST">
+                <div class="form-field">
+                    <label for="email">Email</label>
+                    <div class="input">
+                      <input
+                        type="text"
+                        name="otpCode"
+                        id="otpCode"
+                        value=""
+                        placeholder="Please enter your verification number"
+                        required
+                      />
+                      <div id="otpError" class="error">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-field">
+                    <button type="reset" class="reset">Reset</button>
+                    <button type="button" class="submit"  onclick="verifyOtp()">Submit</button>
+                  </div>
+            </form>
+        </div>
+        <div class="hide" id="success">
+            Validation Successful!
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+.outer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.inner {
+  width: 500px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.inner h1 {
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+}
+
+.form-field {
+  margin-bottom: 10px;
+}
+
+.input input {
+  width: 90%;
+  padding: 5px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+}
+
+button.reset {
+  border: 1px solid #ccc;
+  background: none;
+  padding: 5px;
+  width: 100px;
+}
+
+button.submit {
+  border: 1px solid magenta;
+  background: magenta;
+  padding: 5px;
+  width: 100px;
+}
+
+#firstNameError {
+  display: none;
+}
+.error {
+  color: red;
+}
+
+.input input:hover {
+  border-color: black;
+}
+
+#emailError{
+    display: none;
+}
+
+.hide {
+    display: none;
+}
