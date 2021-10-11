@@ -77,7 +77,8 @@ const stateMappping = [
   'Andaman & Nicobar',
 ];
 function handleChange() {
-  const fullName = document.getElementById('fullName').value;
+  let fullName = document.getElementById('fullName').value;
+  fullName = fullName.trim();
   setErrorfullName(fullName);
 }
 
@@ -223,6 +224,14 @@ function validatePhone() {
   const phone = document.getElementById('phone').value;
   phone_number_mask(phone);
 }
+
+function hideAllLogo() {
+  const x = document.getElementsByClassName('logo');
+
+  for (let i = 0; i < x.length; i++) {
+    x[i].style.display = 'none';
+  }
+}
 function phone_number_mask(phone) {
   error['phone'] = 'Number is invalid';
   const myMask = '(___) ___-____';
@@ -251,39 +260,31 @@ function phone_number_mask(phone) {
   const countryCode = myOutPut.slice(1, 4).replaceAll('_', '');
   if (countryCode.length >= 3) {
     if (countryCode >= 621 && countryCode <= 799) {
+      hideAllLogo();
       document.getElementById('jio').style.display = 'block';
-      document.getElementById('idea').style.display = 'none';
-      document.getElementById('vodaphone').style.display = 'none';
       error['phone'] = '';
     } else if (countryCode >= 801 && countryCode <= 920) {
-      document.getElementById('jio').style.display = 'none';
+      hideAllLogo();
       document.getElementById('idea').style.display = 'block';
-      document.getElementById('vodaphone').style.display = 'none';
       error['phone'] = '';
     } else if (countryCode >= 921 && countryCode <= 999) {
-      document.getElementById('jio').style.display = 'none';
-      document.getElementById('idea').style.display = 'none';
+      hideAllLogo();
       document.getElementById('vodaphone').style.display = 'block';
       error['phone'] = '';
     } else {
-      error['phone'] = 'Number is invalid';
-      document.getElementById('jio').style.display = 'none';
-      document.getElementById('idea').style.display = 'none';
-      document.getElementById('vodaphone').style.display = 'none';
+      hideAllLogo();
       error['phone'] = 'Number is invalid';
     }
   } else {
-    document.getElementById('jio').style.display = 'none';
-    document.getElementById('idea').style.display = 'none';
-    document.getElementById('vodaphone').style.display = 'none';
+    hideAllLogo();
     error['phone'] = 'Number is invalid';
   }
 
   const stateCode = parseInt(myOutPut.slice(5, 9).replaceAll('_', ''));
 
   let lastDigit = 0;
+  let stateName = '';
   if (stateCode > 0) {
-    console.log(stateCode);
     lastDigit = stateCode.toString().slice(1, 3);
     const firstDigit = lastDigit.toString().slice(0, 1);
     if (firstDigit === '0') {
@@ -292,8 +293,9 @@ function phone_number_mask(phone) {
     if (lastDigit > 34) {
       lastDigit = stateCode.toString().slice(2, 3);
     }
+    stateName = stateMappping[lastDigit];
   }
-  const stateName = stateMappping[lastDigit];
+
   document.getElementById('state').innerHTML = stateName;
 
   const numberFilter = myOutPut
@@ -319,9 +321,9 @@ function phone_number_mask(phone) {
 }
 
 function handleSubmit() {
-  const fullName = document.getElementById('fullName').value;
-  const email = document.getElementById('email').value;
-  const phone = document.getElementById('phone').value;
+  const fullName = document.getElementById('fullName').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const phone = document.getElementById('phone').value.trim();
   error['fullName'] = validatefullName(fullName);
   error['email'] = validateEmail(email);
   error['phone'] = phone_number_mask(phone);
